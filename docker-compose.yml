@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  svn:
+    image: lanmaoly/svn-server:latest
+    container_name: svn-server
+    restart: "no"
+    network_mode: host
+    environment:
+      PASSWORD: '123'
+    volumes:
+      - ./data:/repo2:z
