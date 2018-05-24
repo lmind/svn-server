@@ -8,4 +8,4 @@ services:
     environment:
       PASSWORD: '123'
     volumes:
-      - ./data:/repo2:z
+      - ./data:/repo:z
