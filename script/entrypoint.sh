@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+if [ -z $LDAP_URL ]; then
+  echo LDAP_URL not config
+  exit 1
+fi
 
 function replace_vars() {
 eval "cat <<EOF
@@ -24,12 +28,16 @@ mkdir -p /repo
 for item in `ls /repo`; do
   REPO=/repo/$item
   if [ -d $REPO ];then
-    # 是目录
+    # is directory
     echo find $REPO
     new_repo $REPO
   fi
 done
 
+replace_vars /etc/apache2/conf.d/svn.conf /etc/apache2/svn.conf
+
+python /script/ldap.py
+crond -l 0 -d 0 -L /dev/stdout
 
 # Apache gets grumpy about PID files pre-existing
 rm -f /run/apache2/httpd.pid

@@ -1,0 +1,21 @@
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: to dn.one="ou=users,dc=lanmaoly,dc=com"
+    by self write
+    by users read
+    by * auth
+olcAccess: to dn.one="ou=employees,dc=lanmaoly,dc=com"
+    by dn.base="cn=jira,ou=users,dc=lanmaoly,dc=com" read
+    by dn.base="cn=bitbucket,ou=users,dc=lanmaoly,dc=com" read
+    by dn.base="cn=svn,ou=users,dc=lanmaoly,dc=com" read
+    by * auth
+olcAccess: to dn.one="ou=jira,ou=groups,dc=lanmaoly,dc=com"
+    by dn.base="cn=jira,ou=users,dc=lanmaoly,dc=com" read
+    by * none
+olcAccess: to dn.one="ou=bitbucket,ou=groups,dc=lanmaoly,dc=com"
+    by dn.base="cn=bitbucket,ou=users,dc=lanmaoly,dc=com" read
+    by * none
+olcAccess: to *
+    by * read
+    

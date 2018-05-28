@@ -1,0 +1,5 @@
+dn: cn=kknd:/,ou=gg,dc=lanmaoly,dc=com
+changetype: modify
+replace: priAuthzPolicy
+priAuthzPolicy: @user = r
+priAuthzPolicy: @dev = rw

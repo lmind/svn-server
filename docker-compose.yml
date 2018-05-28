@@ -6,6 +6,16 @@ services:
     restart: "no"
     network_mode: host
     environment:
-      PASSWORD: '123'
+      #LDAP_BIND_DN: cn=svn,ou=users,dc=lanmaoly,dc=com
+      #LDAP_PASSWORD: '123'
+      #LDAP_URL: ldap://172.19.60.35:389/ou=employees,dc=lanmaoly,dc=com?cn?sub?(objectClass=inetOrgPerson)
+      REPO_NAME: 'Custom Repo'
+      LDAP_BIND_DN: cn=svn,ou=users,dc=lanmaoly,dc=com
+      LDAP_PASSWORD: '123'
+      LDAP_URL: ldap://172.19.60.75:389/ou=employees,dc=lanmaoly,dc=com?cn?sub?(objectClass=inetOrgPerson)
+      LDAP_SVN_GROUP_DN: 'ou=svn,ou=groups,dc=lanmaoly,dc=com'
+      LDAP_AUTHZ_DN: 'ou=gg,dc=lanmaoly,dc=com'
+      
     volumes:
       - ./data:/repo:z
+      #- ./authz.acl:/etc/apache2/auth/authz.acl:ro
